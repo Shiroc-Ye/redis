@@ -95,73 +95,63 @@ public class MapImpl implements MapInterface {
 
     /**
      * 删除内存中指定键及其对应的值
-     * @param command 删除命令
      * @param key 删除的键
      * @return 返回操作信息
      * */
     @Override
-    public String del(String command,String key) {
-//        System.out.println("删除中....");
-        switch (command)
+    public String del(String key) {
+        System.out.println("删除中....");
+        if(dict.containsKey(key))
         {
-            case "ddel":
-                if((dict.remove(key))!=null)
-                {
-                   return "删除成功！";
-                }
-                else return "删除失败，改键不存在";
-            case "ldel":
-                if((list.remove(key))!=null)
-                {
-                    return "删除成功！";
-                }
-                else return "删除失败，改键不存在";
-            case "sdel":
-                if((set.remove(key))!=null)
-                {
-                    return "删除成功！";
-                }
-                else return "删除失败，改键不存在";
-            default:
-                return "请输入正确命令";
+            if((dict.remove(key))!=null)
+            {
+                return "删除成功！";
+            }
+            else return "删除失败，该键不存在";
+        }
+        else if (list.containsKey(key))
+        {
+            if((list.remove(key))!=null)
+            {
+                return "删除成功！";
+            }
+            else return "删除失败，该键不存在";
+        }
+        else if(set.containsKey(key))
+        {
+            if((set.remove(key))!=null)
+            {
+                return "删除成功！";
+            }
+            else return "删除失败，该键不存在";
+        }
+        else
+        {
+            return "删除失败，该键不存在";
         }
     }
     /**
      * 获取指定键对应的值
-     * @param command 具体操作命令
      * @param key 操作键值
      * @return 返回取得的值
      * */
     @Override
-    public String get(String command,String key) {
-        switch (command)
+    public String get(String key) {
+        if(dict.containsKey(key))
         {
-            case "dget":
-                if(dict.get(key)!=null)
-                {
-                    return key+"对应值为："+dict.get(key).toString();
-                }
-                else {
-                    return "没有该键！";
-                }
-            case "lget":
-                if(list.get(key)!=null)
-                {
-                    return key+"对应值为："+list.get(key).toString();
-                }
-                else {
-                    return "没有该键！";
-                }
-            case "sget":
-                if(set.get(key)!=null)
-                {
-                    return key+"对应值为："+set.get(key).toString();
-                }
-                else {
-                    return "没有该键！";
-                }
-                default:
-                    return "请输入正确命令";
+            return key+"对应值为："+dict.get(key).toString();
+        }
+        else if (list.containsKey(key))
+        {
+            return key+"对应值为："+list.get(key).toString();
+        }
+        else if(set.containsKey(key))
+        {
+            return key+"对应值为："+set.get(key).toString();
+        }
+        else
+        {
+            return "查找失败，该键不存在";
         }
     }
 
@@ -198,14 +188,10 @@ public class MapImpl implements MapInterface {
             case "sset":
 //                System.out.println(text.substring(judge[0].length()+judge[1].length()+2,text.length()));
                  return set(judge[0],judge[1],text.substring(judge[0].length()+judge[1].length()+2));
-            case "dget":
-            case "lget":
-            case "sget":
-                return get(judge[0],judge[1]);
-            case  "ddel":
-            case "ldel":
-            case "sdel":
-               return del(judge[0],judge[1]);
+            case "get":
+                return get(judge[1]);
+            case "del":
+               return del(judge[1]);
             case "save":
                 return save();
             case "read":

@@ -15,16 +15,14 @@ public interface MapInterface {
     String set(String command, String key, String values);
     /**
      * 删除内存中指定键及其对应的值
-     * @param command 删除命令
      * @param key 删除的键
      * @return 返回操作信息
      * */
-    String del(String command, String key);
+    String del( String key);
     /**
      * 获取指定键对应的值
-     * @param command 具体操作命令
      * @param key 操作键值
      * @return 返回取得的值
      * */
-    String get(String command, String key);
+    String get( String key);
 }
