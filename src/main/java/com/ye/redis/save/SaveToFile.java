@@ -21,9 +21,12 @@ public class SaveToFile {
         if(dict.size()==0)return true;
         for(String key:dict.keySet())
         {
-            return OperateFile.AddNode(key,dict.get(key));
+            if(!OperateFile.AddNode(key,dict.get(key)))
+            {
+                return false;
+            }
         }
-        return false;
+        return true;
     }
 
         /**

@@ -27,7 +27,7 @@ public class RedisSever {
         RedisSever sever=new RedisSever();
         ServerSocket serverSocket=new ServerSocket(30000);
         System.out.println("服务器初始化成功");
-        //sever.Initial();
+        sever.Initial();
         while (true) {
             try {
                 Socket socket=serverSocket.accept();
@@ -37,6 +37,7 @@ public class RedisSever {
             catch (IOException e)
             {
                 e.printStackTrace();
+                break;
             }
         }
     }

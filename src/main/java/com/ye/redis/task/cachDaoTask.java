@@ -11,9 +11,10 @@ public class cachDaoTask implements Runnable {
     private  long count;
     private MapImpl instance=MapImpl.getInstance();
 
-    cachDaoTask(long count)
+
+    cachDaoTask()
     {
-        this.count=count;
+        this.count=App.Default_Data_Hit;
     }
     @Override
     public void run() {

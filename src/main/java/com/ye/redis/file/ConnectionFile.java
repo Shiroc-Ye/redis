@@ -11,12 +11,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 /**
  * 连接XML文件
- * @De
+ * @author 烨
  * */
-public class ConnectionFile{
+class ConnectionFile{
     private static volatile Document document=null;
 
-    public static String url = "D:\\文档\\710\\mini\\redis\\src\\main\\resources\\data.xml";
+    private static String url = "D:\\文档\\710\\mini\\redis\\src\\main\\resources\\data.xml";
     /**
      * 加载存储数据的XML文件
      * @return 返回加载的文件

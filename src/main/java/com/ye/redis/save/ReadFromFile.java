@@ -78,7 +78,6 @@ public class ReadFromFile {
 
         for(int i=0;i<linkedLists.size();i++)
         {
-            HashSet<MapNode> hashSet=new HashSet<>();
             linkedList=linkedLists.get(i);
             if(linkedList==null&&list1.get(i)!=null)
             {
@@ -86,10 +85,7 @@ public class ReadFromFile {
             }
             else {
                 assert linkedList != null;
-                for(int j = 0; j<linkedList.size(); j++)
-                {
-                    hashSet.add(linkedList.get(j));
-                }
+                HashSet<MapNode> hashSet = new HashSet<>(linkedList);
                 set.put(list1.get(i),hashSet);
             }
         }
