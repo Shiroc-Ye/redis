@@ -12,7 +12,7 @@ public interface MapInterface {
      * @param values 存放的参数
      * @return 返回存放情况信息
      * */
-    String set(String command, String key, String values);
+    String set(String command, String key, String... values);
     /**
      * 删除内存中指定键及其对应的值
      * @param key 删除的键

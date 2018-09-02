@@ -50,22 +50,21 @@ public class MapImpl implements MapInterface {
  * @return 返回存放情况信息
  * */
     @Override
-    public String set(String command,String key, String values) {
+    public String set(String command,String key, String... values) {
         App.Data_Hit++;
         checkKey(key);
-        String[] value=values.split(" ");
         switch (command)
         {
             case "dset":
-                dict.put(key,new MapNode(value[0]));
+                dict.put(key,new MapNode(values[0]));
 //                System.out.println("系统缓存中...");
-                System.out.println("存储数据为："+value[0]);
+                System.out.println("存储数据为："+values[0]);
                  return "系统缓存"+(dict.containsKey(key)?"成功":"失败");
             case "lset":
                 ArrayList<MapNode> mapNodeList=new ArrayList<>();
 //                System.out.println("系统缓存中...");
-                for (String aValue : value) {
-                    MapNode temp = new MapNode(aValue);
+                for (String avalues : values) {
+                    MapNode temp = new MapNode(avalues);
 
                     mapNodeList.add(temp);
                     if (!mapNodeList.contains(temp)) {
@@ -78,10 +77,10 @@ public class MapImpl implements MapInterface {
             case "sset":
                 HashSet<MapNode> mapNodeSet=new HashSet<>();
 //                System.out.println("系统缓存中...");
-                for (String aValue : value) {
-                    MapNode temp = new MapNode(aValue);
+                for (String avalues : values) {
+                    MapNode temp = new MapNode(avalues);
                     mapNodeSet.add(temp);
-                    if (mapNodeSet.contains(temp)) {
+                    if (!mapNodeSet.contains(temp)) {
                         System.out.println("系统缓存失败！");
                         break;
                     }
@@ -187,8 +186,10 @@ public class MapImpl implements MapInterface {
             case "dset":
             case "lset":
             case "sset":
-//                System.out.println(text.substring(judge[0].length()+judge[1].length()+2,text.length()));
-                 return set(judge[0],judge[1],text.substring(judge[0].length()+judge[1].length()+2));
+                String[] values=new String[judge.length-2];
+                if (judge.length - 2 >= 0) System.arraycopy(judge, 2, values, 0, judge.length - 2);
+                 return set(judge[0],judge[1],values);
+                // return set(judge[0],judge[1],text.substring(judge[0].length()+judge[1].length()+2));
             case "get":
                 return get(judge[1]);
             case "del":
