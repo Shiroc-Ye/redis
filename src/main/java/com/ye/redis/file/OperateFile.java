@@ -73,6 +73,10 @@ public class OperateFile {
             MapNode node = new MapNode(value.getTextTrim());
             Attribute arr = value.attribute("time");
             node.setTimeout(Long.valueOf(arr.getValue()));
+            if(!node.istimeout())
+            {
+                continue;
+            }
             nodes.add(node);
         }
         return nodes;
@@ -99,6 +103,10 @@ public class OperateFile {
                 MapNode temp = new MapNode(value.getTextTrim());
                 Attribute arr = value.attribute("time");
                 temp.setTimeout(Long.valueOf(arr.getValue()));
+                if(!temp.istimeout())
+                {
+                    continue;
+                }
                 linkedList.add(temp);
             }
             linkedLists.add(linkedList);

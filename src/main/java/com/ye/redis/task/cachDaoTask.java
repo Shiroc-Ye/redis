@@ -12,17 +12,21 @@ public class cachDaoTask implements Runnable {
     private MapImpl instance=MapImpl.getInstance();
 
 
-    cachDaoTask()
+   public cachDaoTask()
     {
         this.count=App.Default_Data_Hit;
+    }
+    cachDaoTask(long count)
+    {
+        this.count=count;
     }
     @Override
     public void run() {
         if(App.Data_Hit>=count)
         {
             System.out.println("访问次数达到上限，正在进行持久化....");
-            instance.save();
-            System.out.println("访问次数为"+App.Data_Hit+"正在进行清零...");
+            System.out.println(instance.save());
+            System.out.println("访问次数为"+App.Data_Hit+" 正在进行清零...");
             App.Data_Hit=0;
         }
 

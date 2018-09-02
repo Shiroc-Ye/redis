@@ -23,7 +23,8 @@ public class ReadFromFile {
         LinkedList<String> key=new LinkedList<>();
         LinkedList<MapNode> node;
         node=OperateFile.findDict(key);
-        if(node==null)return true;
+        if(node.size()==0)return true;
+        if(key.size()==0)return true;
         for(int i=0;i<key.size();i++)
         {
             if(node.get(i)==null)

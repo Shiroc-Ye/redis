@@ -37,6 +37,7 @@ public class MapImpl implements MapInterface {
         if(instance==null)
         {
             instance=new MapImpl();
+            instance.Initial();
         }
         return instance;
     }
@@ -192,10 +193,6 @@ public class MapImpl implements MapInterface {
                 return get(judge[1]);
             case "del":
                return del(judge[1]);
-            case "save":
-                return save();
-            case "read":
-                return read();
             case "expire":
                 return changTimeOut(judge[1],judge[2]);
                 default:
@@ -204,6 +201,7 @@ public class MapImpl implements MapInterface {
     }
     /**
      * 存储内存中的数据到文件
+     * 暂时不考虑管理员发送存储命令
      * @return 返回操作信息
      * */
     public String save()
@@ -226,9 +224,9 @@ public class MapImpl implements MapInterface {
     {
         if(ReadFromFile.readList(list)&&ReadFromFile.readSet(set)&&ReadFromFile.readDict(dict))
         {
-            return "读取成功";
+            return "文件读取成功";
         }
-        return "读取失败";
+        return "文件读取失败";
     }
     /**
      * 清除过期节点
@@ -266,6 +264,11 @@ public class MapImpl implements MapInterface {
         }
     }
 
+    private void Initial()
+    {
+        clearDateOutNodes();
+        System.out.println(read());
+    }
     /**
      * 设置过期时间
      * @param key 要修改的键
@@ -297,7 +300,7 @@ public class MapImpl implements MapInterface {
         }
         else
         {
-            return "没有改建";
+            return "没有该建";
         }
         return "修改成功";
     }

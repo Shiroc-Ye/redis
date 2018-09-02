@@ -20,26 +20,46 @@ public class RedisClient {
         String temp;
         while ((temp=br.readLine())!=null)
         {
-            System.out.println("请输入命令：");
+
             switch (temp) {
                 case "quit":
                     System.exit(0);
                 case " ":
                     System.out.println("输入命令不合法！！！");
+                    System.out.println("请输入命令：");
                     break;
                 default:
-                    String key = (temp.split(" "))[1];
-
-                    Socket socket = new Socket("127.0.0.1", Hash.getSocket(key));
-
-                    new Thread(new RedisClientThread(socket)).start();
 
 
-                    PrintStream ps = new PrintStream(socket.getOutputStream());
+                    if(!CommandCheck.checkCommand(temp))
+                    {
+                        System.out.println("输入命令不合法！！！");
+                        System.out.println("请输入命令：");
+                        continue;
+                    }
+                    String[] text=temp.split(" ");
+                    String key = text[1];
 
-                    ps.println(temp);
+                    try {
+                        Socket socket = new Socket("127.0.0.1", Hash.getSocket(key));
+
+
+                        new Thread(new RedisClientThread(socket)).start();
+
+
+                        PrintStream ps = new PrintStream(socket.getOutputStream());
+
+                        ps.println(temp);
+                    }
+                    catch (IOException e)
+                    {
+                        System.out.println("服务器连接失败，可能对应服务器未开启，请尝试其他服务器！");
+                        continue;
+                    }
+                    System.out.println("请输入命令：");
                     break;
             }
+
         }
     }
 }

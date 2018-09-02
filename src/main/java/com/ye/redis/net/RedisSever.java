@@ -1,5 +1,6 @@
 package com.ye.redis.net;
 
+import com.ye.redis.map.MapImpl;
 import com.ye.redis.task.TaskScheduleExecutor;
 
 import java.io.IOException;
@@ -18,8 +19,9 @@ public class RedisSever {
     /**
      * 启动自动缓存服务和定期删除过期键服务
      * */
-    private void Initial()
+    void Initial()
     {
+        MapImpl.getInstance();
         TaskScheduleExecutor.startTask();
     }
     public static void main(String[] args)throws IOException

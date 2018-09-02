@@ -34,7 +34,7 @@ public class MapNode {
      * 判断节点是否过期
      * @return 过期返回false
      * */
-    boolean istimeout()
+    public boolean istimeout()
     {
         if(timeout==-1)
         {
