@@ -13,7 +13,7 @@ public class App {
 
     public static int                   Data_Check_Time =60;                      //定义定期检查时间
 
-    public static int                   Initial_Delay_Time=30;                    //定义初始时间
+    public static long                   Initial_Delay_Time=30;                    //定义初始时间
 
     static int                          Default_Time_Out=30;                      //默认过期时间30秒
 

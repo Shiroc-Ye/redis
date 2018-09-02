@@ -3,7 +3,7 @@ package com.ye.redis.net;
 import com.sun.istack.internal.NotNull;
 
 class CommandCheck {
-    private final static String[] commands = {"set","lset", "hset", "get", "del", "expire"};
+    private final static String[] commands = {"dset","lset", "sset", "get", "del", "expire"};
 
     /**
      * 检查格式如:set key value形式的命令串是否合法
@@ -19,11 +19,11 @@ class CommandCheck {
         }
         ///根据命令类型判断命令是否正确
         switch(commands[0].toLowerCase()){
-            case "set":
+            case "dset":
             case "expire":
                 return commands.length == 3 && isCommand(commands[0]);
             case "lset":
-            case "hset":
+            case "sset":
                 return commands.length >= 3 && isCommand(commands[0]);
             case "get":
             case "del":

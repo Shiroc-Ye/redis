@@ -235,7 +235,7 @@ public class MapImpl implements MapInterface {
     {
         for(String key:dict.keySet())
         {
-            if(dict.get(key).istimeout())
+            if(!dict.get(key).istimeout())
             {
                 System.out.println(key+"过期，系统自动删除...");
                 dict.remove(key);
@@ -243,7 +243,7 @@ public class MapImpl implements MapInterface {
         }
         for(String key:list.keySet())
         {
-            if(list.get(key).get(0).istimeout())
+            if(!(list.get(key).get(0).istimeout()))
             {
                 set.remove(key);
                 System.out.println(key+"过期，系统自动删除...");
@@ -254,7 +254,7 @@ public class MapImpl implements MapInterface {
         {
             for(MapNode node:set.get(key))
             {
-                if(node.istimeout())
+                if(!node.istimeout())
                 {
                     set.remove(key);
                     System.out.println(key+"过期，系统自动删除...");

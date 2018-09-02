@@ -60,7 +60,9 @@ public class ReadFromFile {
             else {
                 assert linkedList != null;
                 ArrayList<MapNode> arrayList = new ArrayList<>(linkedList);
-                list.put(list1.get(i), arrayList);
+                if(!(arrayList.size()==0)) {
+                    list.put(list1.get(i), arrayList);
+                }
             }
         }
         return true;
@@ -87,7 +89,9 @@ public class ReadFromFile {
             else {
                 assert linkedList != null;
                 HashSet<MapNode> hashSet = new HashSet<>(linkedList);
-                set.put(list1.get(i),hashSet);
+                if(!(hashSet.size()==0)) {
+                    set.put(list1.get(i), hashSet);
+                }
             }
         }
         return true;

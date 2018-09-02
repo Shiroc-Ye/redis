@@ -36,6 +36,7 @@ public class MapNode {
      * */
     public boolean istimeout()
     {
+        //System.out.println(value+((timeout-System.currentTimeMillis())/1000));
         if(timeout==-1)
         {
             return true;
