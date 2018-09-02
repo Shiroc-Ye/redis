@@ -42,7 +42,9 @@ public class MapNode {
             return true;
         }
         else
-            return System.currentTimeMillis()-timeout>0;
+        {
+            return System.currentTimeMillis() - timeout <= 0;
+        }
     }
 
     /**

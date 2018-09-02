@@ -12,6 +12,7 @@ import java.util.*;
  * */
 
 public class OperateFile {
+
     /**
      * 存储键值对到文件的map中
      * @param key 键
@@ -19,7 +20,8 @@ public class OperateFile {
      * */
     public static boolean AddNode(String  key,MapNode value)
     {
-        Document document=ConnectionFile.load();
+        ConnectionFile connectionFile=new ConnectionFile();
+        Document document=connectionFile.load();
         Element root=document.getRootElement();
         Element dictElement=root.element("dict");
         Element dictKeyElement=dictElement.addElement("key");
@@ -27,7 +29,7 @@ public class OperateFile {
         Element dictValueElement=dictKeyElement.addElement("value");
         dictValueElement.setText(value.getValue());
         dictValueElement.addAttribute("time",(value.getTimeout())+"");
-        return ConnectionFile.saveFile(document);
+        return connectionFile.saveFile(document);
     }
     /**
      * 存储list或者set到文件中
@@ -36,7 +38,8 @@ public class OperateFile {
      * */
     public static boolean AddNode(String key,String type, Collection<MapNode> list)
     {
-        Document document=ConnectionFile.load();
+        ConnectionFile connectionFile=new ConnectionFile();
+        Document document=connectionFile.load();
         Element root=document.getRootElement();
         Element dictElement=root.element(type);
         Element dictKeyElement=dictElement.addElement("key");
@@ -47,7 +50,7 @@ public class OperateFile {
             dictValueElement.setText(node.getValue());
             dictValueElement.addAttribute("time",(node.getTimeout())+"");
         }
-        return ConnectionFile.saveFile(document);
+        return connectionFile.saveFile(document);
     }
 
     /**
@@ -57,8 +60,9 @@ public class OperateFile {
      * */
     public static LinkedList<MapNode> findDict(LinkedList<String> list)
     {
+        ConnectionFile connectionFile=new ConnectionFile();
         LinkedList<MapNode> nodes=new LinkedList<>();
-        Document document=ConnectionFile.load();
+        Document document=connectionFile.load();
         Element root=document.getRootElement();
         Element dictElement=root.element("dict");
         //获取dict节点下的所有name为key的子结点
@@ -88,9 +92,10 @@ public class OperateFile {
     * */
     public static LinkedList<LinkedList<MapNode>> findList(LinkedList<String> list, String type)
     {
+        ConnectionFile connectionFile=new ConnectionFile();
         LinkedList<LinkedList<MapNode>> linkedLists=new LinkedList<>();
         LinkedList<MapNode> linkedList=new LinkedList<>();
-        Document document=ConnectionFile.load();
+        Document document=connectionFile.load();
         Element root=document.getRootElement();
         Element listElement=root.element(type);
         List listNode=listElement.elements("key");
@@ -120,14 +125,15 @@ public class OperateFile {
      * */
     public static boolean clear()
     {
-        Document document=ConnectionFile.load();
+        ConnectionFile connectionFile=new ConnectionFile();
+        Document document=connectionFile.load();
         Element root=document.getRootElement();
         Element dict=root.element("dict");
         Element list=root.element("list");
         Element set=root.element("set");
         if((clearElement(dict)&&clearElement(list)&&clearElement(set)))
         {
-            return ConnectionFile.saveFile(document);
+            return connectionFile.saveFile(document);
         }
         return false;
     }

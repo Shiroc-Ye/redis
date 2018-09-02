@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <data> 
-  <dict/>  
-  <list></list>  
+  <dict> 
+    <key>name 
+      <value time="1535872332784">asd</value> 
+    </key> 
+  </dict>  
+  <list>
+    <key>books
+      <value time="1535872361881">C</value>
+      <value time="1535872361881">C++</value>
+      <value time="1535872361881">Java</value>
+    </key>
+  </list>  
   <set/> 
 </data>

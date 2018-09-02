@@ -13,15 +13,20 @@ import java.io.IOException;
  * 连接XML文件
  * @author 烨
  * */
-class ConnectionFile{
+public class ConnectionFile{
     private static volatile Document document=null;
 
-    private static String url = "D:\\文档\\710\\mini\\redis\\src\\main\\resources\\data.xml";
+    public  void setUrl(String url) {
+        this.url = url;
+    }
+
+    public  String url = "D:\\文档\\710\\mini\\redis\\src\\main\\resources\\data.xml";
+
     /**
      * 加载存储数据的XML文件
      * @return 返回加载的文件
      * */
-    static Document load()
+    public Document load()
     {
 
         try
@@ -43,7 +48,7 @@ class ConnectionFile{
      * @param document 存储的文件
      * @return 存储成功返回true
      * */
-    static boolean saveFile(Document document)
+    public boolean saveFile(Document document)
     {
         try {
             OutputFormat format = OutputFormat.createPrettyPrint();

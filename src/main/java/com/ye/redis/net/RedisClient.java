@@ -34,7 +34,6 @@ public class RedisClient {
                     if(!CommandCheck.checkCommand(temp))
                     {
                         System.out.println("输入命令不合法！！！");
-                        System.out.println("请输入命令：");
                         continue;
                     }
                     String[] text=temp.split(" ");
@@ -56,7 +55,6 @@ public class RedisClient {
                         System.out.println("服务器连接失败，可能对应服务器未开启，请尝试其他服务器！");
                         continue;
                     }
-                    System.out.println("请输入命令：");
                     break;
             }
 

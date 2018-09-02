@@ -265,6 +265,9 @@ public class MapImpl implements MapInterface {
         }
     }
 
+    /**
+     * 数据初始化
+     * */
     private void Initial()
     {
         clearDateOutNodes();
